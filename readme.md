@@ -3,7 +3,7 @@
 !["logo"](docs/src/assets/logo.png)
 
 `FredApi.jl` offers the possibility to access the [FRED Developer API](https://research.stlouisfed.org/docs/api/) in Julia.
-This package was inspired by [FredData.jl](https://github.com/micahjsmith/FredData.jl) but is easier to use and focuses more on the time series data.
+This package is available in Python as [FredApi](https://github.com/markushhh/FredApi) and was inspired by [FredData.jl](https://github.com/micahjsmith/FredData.jl) but is easier to use and focuses more on the time series data.
 
 ## Installation
 
