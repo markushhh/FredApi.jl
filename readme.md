@@ -119,6 +119,8 @@ output
 │ 2019-01-01 │ 2.4   │
 ```
 
+To explore more options, go to [TimeSeries.jl](https://github.com/JuliaStats/TimeSeries.jl/blob/master/docs/src/combine.md)
+
 ```@julia
 using Plots
 
@@ -126,7 +128,5 @@ plot(x, legend = false)
 ```
 
 !["plot"](docs/src/assets/plot.png)
-
-To explore more options, go to [TimeSeries.jl](https://github.com/JuliaStats/TimeSeries.jl/blob/master/docs/src/combine.md)
 
 # Each comment, suggestion or pull request is welcome!
