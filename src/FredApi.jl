@@ -3,8 +3,7 @@ __precompile__()
 module FredApi
 
 export
-    get_symbols,
-    set_api_key_fred
+    get_symbols
 
 using DataFrames
 using TimeSeries
