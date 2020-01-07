@@ -17,7 +17,26 @@ or
 add https://github.com/markushhh/FredApi.jl/
 ```
 
-## Tutorial
+## Index
+
+The package contains following functions: 
+
+- get_symbols
+- search_symbol
+- get_release
+- get_metadata
+- get_category
+- get_sources
+- get_source
+
+
+## Tutorial and Workflow
+
+```@julia
+using FredApi
+```
+
+Following is an applied tutorial about how to use the package. Simply replace the symbol with your prefered symbol and run the function.
 
 Download a full dataset with
 
@@ -128,5 +147,106 @@ plot(x, legend = false)
 ```
 
 !["plot"](docs/src/assets/plot.png)
+
+In case you do not know which ID a time series has, you can search for it using the API. Let's have a look at an example, we would like to download the French Gross Domestic Product, then we would use `search_symbol` and explore the results.
+
+```@julia
+x = search_symbol("GDP", "France")
+println(x)
+```
+
+The resulting DataFrame is sorted by popularity, you can always sort by an column you want by applying `sort!(x, j)` to sort by the `j`-th column.
+
+```
+13×3 DataFrame
+│ Row │ popularity │ title            │ id                                                                                                │
+│     │ Int64      │ String           │ String                                                                                            │
+├─────┼────────────┼──────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 1   │ 47         │ CLVMNACSCAB1GQFR │ Real Gross Domestic Product for France                                                            │
+│ 2   │ 24         │ CPMNACSCAB1GQFR  │ Gross Domestic Product for France                                                                 │
+│ 3   │ 20         │ NYGDPPCAPKDFRA   │ Constant GDP per capita for France                                                                │
+│ 4   │ 16         │ RGDPNAFRA666NRUG │ Real GDP at Constant National Prices for France                                                   │
+│ 5   │ 12         │ CLVMNACNSAB1GQFR │ Real Gross Domestic Product for France                                                            │
+│ 6   │ 11         │ MKTGDPFRA646NWDB │ Gross Domestic Product for France                                                                 │
+│ 7   │ 7          │ NAEXKP01FRQ661S  │ Gross Domestic Product by Expenditure in Constant Prices: Total Gross Domestic Product for France │
+│ 8   │ 7          │ CPMNACNSAB1GQFR  │ Gross Domestic Product for France                                                                 │
+│ 9   │ 5          │ NAEXKP01FRQ657S  │ Gross Domestic Product by Expenditure in Constant Prices: Total Gross Domestic Product for France │
+│ 10  │ 5          │ NAEXKP01FRQ189S  │ Gross Domestic Product by Expenditure in Constant Prices: Total Gross Domestic Product for France │
+│ 11  │ 3          │ NAEXKP01FRA189S  │ Gross Domestic Product by Expenditure in Constant Prices: Total Gross Domestic Product for France │
+│ 12  │ 2          │ NAEXKP01FRA657S  │ Gross Domestic Product by Expenditure in Constant Prices: Total Gross Domestic Product for France │
+│ 13  │ 1          │ NAEXKP01FRA661S  │ Gross Domestic Product by Expenditure in Constant Prices: Total Gross Domestic Product for France │
+```
+
+Let's take the most popular series `Real Gross Domestic Product for France` and get more information about it.
+
+```@julia
+get_metadata("CLVMNACSCAB1GQFR")
+```
+
+output
+
+```
+Metadata for: CLVMNACSCAB1GQFR
+Title: Real Gross Domestic Product for France
+Units: Millions of Chained 2010 Euros
+Adjustment: Seasonally Adjusted
+Frequency: Quarterly
+Notes: Eurostat unit ID: CLV10_MNAC
+Eurostat item ID = B1GQ
+Eurostat country ID: FR
+
+Seasonally and calendar adjusted data.
+
+For euro area member states, the national currency series are converted into euros using the irrevocably fixed exchange rate. This preserves the same growth rates than for the previous national currency series. Both series coincide for years after accession to the euro area but differ for earlier years due to market exchange rate movements.
+
+Copyright, European Union, http://ec.europa.eu, 1995-2016.Complete terms of use are available at http://ec.europa.eu/geninfo/legal_notices_en.htm#copyright
+```
+
+, to get release information about the series, run `get_release("CLVMNACSCAB1GQFR")`
+
+output:
+
+```
+Dict{String,Any} with 6 entries:
+  "realtime_start" => "2020-01-07"
+  "name"           => "National Accounts - GDP (Eurostat)"
+  "id"             => 267
+  "realtime_end"   => "2020-01-07"
+  "link"           => "http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=…
+  "press_release"  => true
+```
+
+, to get the category run: `get_category("CLVMNACSCAB1GQFR")`. In this example we get `GDP`.
+
+To get all sources from FRED, run `get_sources()` which results in
+
+```
+89×3 DataFrame. Omitted printing of 1 columns
+│ Row │ id    │ name                                                    │
+│     │ Int64 │ String                                                  │
+├─────┼───────┼─────────────────────────────────────────────────────────┤
+│ 1   │ 1     │ Board of Governors of the Federal Reserve System (US)   │
+│ 2   │ 3     │ Federal Reserve Bank of Philadelphia                    │
+│ 3   │ 4     │ Federal Reserve Bank of St. Louis                       │
+│ 4   │ 6     │ Federal Financial Institutions Examination Council (US) │
+│ 5   │ 11    │ Dow Jones & Company                                     │
+│ 6   │ 14    │ University of Michigan                                  │
+│ 7   │ 15    │ Council of Economic Advisers (US)                       │
+⋮
+│ 82  │ 129   │ Moody’s                                                 │
+│ 83  │ 133   │ DHI Group, Inc.                                         │
+│ 84  │ 135   │ Centers for Disease Control and Prevention     …
+```
+
+For more information about a source from FRED, run `get_source(1)` with an Integer specifying the source, e.g.
+
+```@julia
+Dict{String,Any} with 5 entries:
+  "realtime_start" => "2020-01-07"
+  "name"           => "Board of Governors of the Federal Reserve System (US)"
+  "id"             => 1
+  "realtime_end"   => "2020-01-07"
+  "link"           => "http://www.federalreserve.gov/"
+```
 
 # Each comment, suggestion or pull request is welcome!
