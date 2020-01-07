@@ -32,6 +32,10 @@ The package contains following functions:
 
 ## Tutorial and Workflow
 
+```@julia
+using FredApi
+```
+
 Following is an applied tutorial about how to use the package. Simply replace the symbol with your prefered symbol and run the function.
 
 Download a full dataset with
