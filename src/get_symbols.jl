@@ -1,5 +1,4 @@
 """
-
 # Download data from FRED
 
     get_symbols(symbol)
@@ -18,11 +17,12 @@ julia> get_symbols("T10Y2Y")
 """
 function get_symbols(symbol::String)
 
+    url = "https://api.stlouisfed.org/fred/series/observations"
     parameters = Dict("api_key" => "8acd2cd4e9a52d3c9984b69deed24617",
                     "file_type" => "json",
                     "series_id" => symbol)
 
-    response = HTTP.request("GET", "https://api.stlouisfed.org/fred/series/observations"; query = parameters)
+    response = HTTP.request("GET", url; query = parameters)
     observations = JSON.parse(String(response.body))["observations"]
 
     time = Dates.Date.([observations[i]["date"] for i ∈ eachindex(observations)])
@@ -42,7 +42,6 @@ function get_symbols(symbol::String)
 end
 
 """
-
 # Download data from FRED
 
     get_symbols(symbol, start_interval, end_interval)
