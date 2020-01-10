@@ -5,7 +5,7 @@
 
 ## Arguments
 
-    - `source_id`: an ID, e.g. 1 for "Board of Governors of the Federal Reserve System (US)""
+    - `source_id`: an ID, e.g. 1 for "Board of Governors of the Federal Reserve System (US)"
 
 ## Examples
 

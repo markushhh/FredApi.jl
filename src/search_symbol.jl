@@ -1,7 +1,7 @@
 """
 # Search for the symbol of an economic data series that matches the search text.
 
-    search_variable(search_text, must_contain)
+    search_symbol(search_text, must_contain)
 
 ## Arguments
 
@@ -15,16 +15,17 @@ The resulting DataFrame is sorted by popularity.
 ## Example
 
 ```jldoctest
-julia> search_variable("Exports", "Mexico")
-julia> search_variable("GDP", "Germany")
-julia> search_variable("G", "France")
-julia> x = search_variable("Exports", "Mexico")
+julia> search_symbol("Exports", "Mexico")
+julia> search_symbol("GDP", "Germany")
+julia> search_symbol("G", "France")
+julia> x = search_symbol("Exports", "Mexico")
 julia> println(x)
 ```
 """
 function search_symbol(search_title::String, must_contain::String = "")
 
     search_text = replace(search_title, " " => "+")
+    must_contain = replace(must_contain, " " => "+")
     url = "https://api.stlouisfed.org/fred/series/search"
 
     parameters = Dict("api_key" => ENV["API_FRED"],
