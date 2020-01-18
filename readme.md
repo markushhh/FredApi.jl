@@ -3,7 +3,7 @@
 !["logo"](docs/src/assets/logo.png)
 
 `FredApi.jl` offers the possibility to access the [FRED Developer API](https://research.stlouisfed.org/docs/api/) in Julia.
-This package is available in R as [FredApi](https://github.com/markushhh/FredApi) and was inspired by [FredData.jl](https://github.com/micahjsmith/FredData.jl) but focuses more on the time series data.
+This package is available in R as [FredApi](https://github.com/markushhh/FredApi).
 
 ## Installation
 
@@ -39,7 +39,7 @@ set_api_key("YOUR_KEY")
 ```
 
 where you manually replace `YOUR_KEY` with your private API key. 
-To set an environment variable under windows open command prompt and type `setx API_FRED "YOUR_KEY"` where `YOUR_KEY` must be replaced with your API key.
+To set an environment variable under windows, open command prompt and type in `setx API_FRED "YOUR_KEY"` where `YOUR_KEY` must be replaced with your API key.
 To open the command prompt press `Windows+R`, then type in `cmd` and press Enter.
 To set an environment variable on an other OS follow [this](https://lmgtfy.com/?qtype=search&t=w&segment=lmgtfy2&is_ad=0&gclid=&q=how+to+set+environment+variable+&as=0&engine=&media_type=) link and add your OS. 
 You can request a FRED API key at [https://research.stlouisfed.org/useraccount/login/secure/](https://research.stlouisfed.org/useraccount/login/secure/).
@@ -163,14 +163,14 @@ plot(x, legend = false)
 
 !["plot"](docs/src/assets/plot.png)
 
-In case you do not know which ID a time series has, you can search for it using the API. Let's have a look at an example, we would like to download the French Gross Domestic Product, then we would use `search_symbol` and explore the results.
+In case you do not know which ID a time series is associated with, you can search for it using the API. Let's have a look over an example. We would like to download the French Gross Domestic Product. We would use `search_symbol` and explore the results.
 
 ```@julia
 x = search_symbol("GDP", "France")
 println(x)
 ```
 
-The resulting DataFrame is sorted by popularity, you can always sort by an column you want by applying `sort!(x, j)` to sort by the `j`-th column.
+The resulting DataFrame is sorted by popularity, you can always sort by any column you'd like by applying `sort!(x, j)` to sort by the `j`-th column.
 
 ```
 13×3 DataFrame
