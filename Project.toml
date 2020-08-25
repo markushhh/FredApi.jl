@@ -12,8 +12,8 @@ TimeSeries = "9e3dc215-6440-5c97-bce1-76c03772f85e"
 
 [compat]
 DataFrames = "0.2"
-Dates = "1.2.0"
-HTTP = "0.8.8"
-JSON = "0.21.0"
-TimeSeries = "0.16.1"
+Dates = "1.2"
+HTTP = "0.8"
+JSON = "0.20"
+TimeSeries = "0.16"
 julia = "1"
