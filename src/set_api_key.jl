@@ -10,5 +10,5 @@ function set_api_key(api_key)
         println("local API key is set.")
     end
 
-    return(nothing)
+    return nothing
 end
