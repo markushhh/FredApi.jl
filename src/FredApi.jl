@@ -4,6 +4,7 @@ module FredApi
 
 export
     set_api_key,
+    write_api_key,
     load_api_key,
     get_symbols,
     search_symbol,
@@ -20,6 +21,7 @@ using HTTP
 using JSON
 
 include("set_api_key.jl")
+include("write_api_key.jl")
 include("load_api_key.jl")
 include("get_symbols.jl")
 include("search_symbol.jl")
