@@ -49,8 +49,8 @@ end
 ## Arguments
 
     - `symbol`: symbol, e.g. "GDPC1" or "FEDFUNDS"
-    - `f` : Date character, e.g. "2018-12-13" in the form of "YYYY-MM-DD"
-    - `t` : Date character, e.g. "2019-12-13" in the form of "YYYY-MM-DD"
+    - `start_interval` : Date character, e.g. "2018-12-13" in the form of "YYYY-MM-DD"
+    - `end_interval` : Date character, e.g. "2019-12-13" in the form of "YYYY-MM-DD"
 
 ## Examples
 
