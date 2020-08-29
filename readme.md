@@ -29,6 +29,8 @@ The package contains following functions:
 - `get_category`
 - `get_sources`
 - `get_source`
+- `save_api_key`
+- `load_api_key`
 
 ## Set up an Envionment Variable for the FRED API key
 
