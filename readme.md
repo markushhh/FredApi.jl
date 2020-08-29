@@ -46,7 +46,7 @@ To open the command prompt press `Windows+R`, then type in `cmd` and press Enter
 To set an environment variable on an other OS follow [this](https://lmgtfy.com/?qtype=search&t=w&segment=lmgtfy2&is_ad=0&gclid=&q=how+to+set+environment+variable+&as=0&engine=&media_type=) link and add your OS. 
 You can request a FRED API key at [https://research.stlouisfed.org/useraccount/login/secure/](https://research.stlouisfed.org/useraccount/login/secure/).
 
-Another option is to write the API key to your home directory with `save_api_key("YOUR_KEY")`. It saves a `.fred_api_key` file into `homedir()` which can later be loaded locally with `load_api_key()`. This method requires you to load the key always if you start a new session.
+Another option is to write the API key to your home directory with `save_api_key("YOUR_KEY")`. It saves a `.fred_api_key` file into `homedir()` which can later be loaded into the current julia process with `load_api_key()`. This method requires you to load the key always if you start a new session.
 
 ## Tutorial and Workflow
 
